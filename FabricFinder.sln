@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabricFinder", "FabricFinder\FabricFinder.csproj", "{D7AB55E8-7F90-49F7-8D76-1EF3B0EA9DC4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7AB55E8-7F90-49F7-8D76-1EF3B0EA9DC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7AB55E8-7F90-49F7-8D76-1EF3B0EA9DC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7AB55E8-7F90-49F7-8D76-1EF3B0EA9DC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7AB55E8-7F90-49F7-8D76-1EF3B0EA9DC4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0343D73A-F2DE-44EF-9CE4-B490E3F41400}
+	EndGlobalSection
+EndGlobal
