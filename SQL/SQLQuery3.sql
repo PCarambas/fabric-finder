@@ -18,6 +18,7 @@ GO
 
 CREATE TABLE [Fabric] (
   [Id] int PRIMARY KEY IDENTITY(1, 1),
+  [Name] nvarchar(255)NOT NULL,
   [Color] nvarchar(255) NOT NULL,
   [Yardage] float,
   [ImageUrl] image,
@@ -41,6 +42,7 @@ CREATE TABLE [Pattern] (
 GO
 
 CREATE TABLE [PatternFabric] (
+	[Id] int PRIMARY KEY IDENTITY,
   [PatternId] int,
   [FabricId] int
 )
@@ -48,7 +50,7 @@ GO
 
 CREATE TABLE [FabricType] (
   [Id] int PRIMARY KEY IDENTITY(1, 1),
-  [Yype] nvarchar(255) NOT NULL
+  [Type] nvarchar(255) NOT NULL
 )
 GO
 
