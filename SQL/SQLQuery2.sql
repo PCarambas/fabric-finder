@@ -1,6 +1,15 @@
 ﻿USE [FabricFinder]
 GO
 
+
+set identity_insert [FabricType] on
+INSERT INTO [FabricType]
+([Id], Type) VALUES (1, 'Woven');
+INSERT INTO [FabricType]
+([Id], Type) VALUES (2, 'Knit');
+set identity_insert [FabricType] off
+
+
 set identity_insert [Fabric] on
 INSERT INTO [Fabric]
   ([Id], [Name], Color, Yardage, ImageUrl, UserId, FabricTypeId) VALUES
@@ -22,7 +31,7 @@ INSERT INTO [Fabric]
 (6, 'ITY Interlock', 'Mocha Light', 3, 'https://m.media-amazon.com/images/I/71fknRMYjwL._AC_UL320_.jpg', 2, 2);
 INSERT INTO [Fabric]
   ([Id], [Name], Color, Yardage, ImageUrl, UserId, FabricTypeId) VALUES
-(7, 'Stretch Lace', 'Black', 2, 'https://m.media-amazon.com/images/I/61kUQe4lnRL._AC_.jpg', 2, 2);
+(7, 'Stretch Lace', 'Black', 2.0, 'https://m.media-amazon.com/images/I/61kUQe4lnRL._AC_.jpg', 2, 2);
 INSERT INTO [Fabric]
   ([Id], [Name], Color, Yardage, ImageUrl, UserId, FabricTypeId) VALUES
 (8, 'Calico Cotton', 'Yellow', .5, 'https://imgprd19.hobbylobby.com/a/1a/b2/a1ab2f44b71419738ec99c81da091981c08f3da8/350Wx350H-111005-0319.jpg', 2, 1);
@@ -76,10 +85,4 @@ INSERT INTO [PatternFabric]
 set identity_insert [PatternFabric] off
 
 
-set identity_insert [FabricType] on
-INSERT INTO [FabricType]
-([Id], Type) VALUES (1, 'Woven');
-INSERT INTO [FabricType]
-([Id], Type) VALUES (2, 'Knit');
-set identity_insert [FabricType] off
 

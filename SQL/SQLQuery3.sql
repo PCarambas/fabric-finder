@@ -21,7 +21,7 @@ CREATE TABLE [Fabric] (
   [Name] nvarchar(255)NOT NULL,
   [Color] nvarchar(255) NOT NULL,
   [Yardage] float,
-  [ImageUrl] image,
+  [ImageUrl] nvarchar(255),
   [UserId] int NOT NULL,
   [FabricTypeId] int NOT NULL
 )
@@ -37,7 +37,7 @@ GO
 CREATE TABLE [Pattern] (
   [Id] int PRIMARY KEY IDENTITY(1, 1),
   [Name] nvarchar(255) NOT NULL,
-  [ImageUrl] image
+  [ImageUrl] nvarchar(255)
 )
 GO
 
