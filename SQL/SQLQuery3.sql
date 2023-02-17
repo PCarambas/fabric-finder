@@ -36,6 +36,7 @@ GO
 
 CREATE TABLE [Pattern] (
   [Id] int PRIMARY KEY IDENTITY(1, 1),
+  [UserId] int NOT NULL,
   [Name] nvarchar(255) NOT NULL,
   [ImageUrl] nvarchar(255)
 )
@@ -43,6 +44,7 @@ GO
 
 CREATE TABLE [PatternFabric] (
 	[Id] int PRIMARY KEY IDENTITY,
+	[UserId] int NOT NULL,
   [PatternId] int,
   [FabricId] int
 )
@@ -64,4 +66,10 @@ ALTER TABLE [PatternFabric] ADD FOREIGN KEY ([PatternId]) REFERENCES [Pattern] (
 GO
 
 ALTER TABLE [Fabric] ADD FOREIGN KEY ([UserId]) REFERENCES [UserProfile] ([Id])
+GO
+
+ALTER TABLE [Pattern] ADD FOREIGN KEY ([UserId]) REFERENCES [UserProfile] ([Id])
+GO
+
+ALTER TABLE [PatternFabric] ADD FOREIGN KEY ([UserId]) REFERENCES [UserProfile] ([Id])
 GO

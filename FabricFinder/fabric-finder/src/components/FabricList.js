@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getFabrics } from "../modules/fabricManager";
+import { getFabrics, getFabricsByUserId } from "../modules/fabricManager";
 import Fabric from "./Fabric";
 
 
@@ -7,14 +7,13 @@ export default function FabricList({ }) {
     const [fabrics, setFabrics] = useState([]);
 
     const getAllFabrics = () => {
-        getFabrics()
+        getFabricsByUserId()
             .then(fabrics => {
                 setFabrics(fabrics)
             });
     }
     useEffect(() => {
         getAllFabrics();
-        console.log(fabrics);
     }, []);
 
     return (
@@ -25,6 +24,7 @@ export default function FabricList({ }) {
                 < Fabric
                     key={fabric.id}
                     fabric={fabric}
+                    getAllFabrics={getAllFabrics}
                 />
             )}
         </>
