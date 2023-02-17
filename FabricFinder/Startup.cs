@@ -25,6 +25,8 @@ namespace FabricFinder
         {
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             services.AddTransient<IFabricRepository, FabricRepository>();
+            services.AddTransient<IFabricTypeRepository, FabricTypeRepository>();
+            services.AddTransient<IPatternRepository, PatternRepository>();
 
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");

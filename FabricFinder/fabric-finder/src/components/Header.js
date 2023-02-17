@@ -18,49 +18,66 @@ export default function Header({ isLoggedIn }) {
     return (
         <div>
             <Navbar color="light" light expand="md">
-                <NavbarBrand tag={RRNavLink} to="/">Fabric Finder</NavbarBrand>
+                <NavbarBrand tag={RRNavLink} to="/">
+                    Fabric Finder
+                </NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
-                        { /* When isLoggedIn === true, we will render the Home link */}
-                        {isLoggedIn &&
-                            <NavItem>
-                                <NavLink tag={RRNavLink} to="/">Home</NavLink>
-                            </NavItem>
+                        {/* When isLoggedIn === true, we will render the Home link */}
+                        {isLoggedIn && (
+                            <>
+                                <NavItem>
+                                    <NavLink tag={RRNavLink} to="/">
+                                        Home
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink tag={RRNavLink} to="addFabric">
+                                        Add Fabric
+                                    </NavLink>
+                                </NavItem>
 
-                        }
+                            </>
+                        )}
                     </Nav>
 
                     <Nav navbar>
-                        {isLoggedIn &&
+                        {isLoggedIn && (
                             <>
                                 <NavItem>
-                                    <NavLink fabric={RRNavLink} to="/fabric">Add Fabric</NavLink>
+                                    <a
+                                        aria-current="page"
+                                        className="nav-link"
+                                        style={{ cursor: "pointer" }}
+                                        onClick={logout}
+                                    >
+                                        Logout
+                                    </a>
                                 </NavItem>
-
-                                <NavItem>
-                                    <NavLink pattern={RRNavLink} to="/patterns">Add a Pattern</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <a aria-current="page" className="nav-link"
-                                        style={{ cursor: "pointer" }} onClick={logout}>Logout</a>
-                                </NavItem>
-
                             </>
-                        }
-                        {!isLoggedIn &&
+                        )}
+                        {!isLoggedIn && (
                             <>
                                 <NavItem>
-                                    <NavLink tag={RRNavLink} to="/login">Login</NavLink>
+                                    <NavLink tag={RRNavLink} to="/login">
+                                        Login
+                                    </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink tag={RRNavLink} to="/register">Register</NavLink>
+                                    <NavLink tag={RRNavLink} to="/register">
+                                        Register
+                                    </NavLink>
                                 </NavItem>
                             </>
-                        }
+                        )}
                     </Nav>
                 </Collapse>
             </Navbar>
         </div>
     );
 }
+
+
+
+

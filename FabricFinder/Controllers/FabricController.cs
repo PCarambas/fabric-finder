@@ -17,61 +17,100 @@ namespace FabricFinder.Controllers
     //[Authorize]
     public class FabricController : ControllerBase
     {
-        private readonly IFabricRepository _fabricRepository;
-        public FabricController(IFabricRepository fabricRepository)
+        private IFabricRepository _fabricRepository;
+        private readonly IUserProfileRepository _userProfileRepository;
+
+        public FabricController(IFabricRepository fabricRepository, IUserProfileRepository userProfileRepository)
         {
             _fabricRepository = fabricRepository;
-        }
+            _userProfileRepository = userProfileRepository;
 
+        }
+        //[Authorize]
         [HttpGet]
         public IActionResult Get()
         {
             return Ok(_fabricRepository.GetAll());
         }
 
+        [HttpPost("addpatternfabric")]
+        public IActionResult AddPatternFabric(PatternFabric patternFabric) 
+        {
+            var userProfile = GetCurrentUserProfile();
+            patternFabric.UserId= userProfile.Id;
+            _fabricRepository.AddPatternFabric(patternFabric);
+            return NoContent();
+        }
 
 
+
+
+        //[Authorize]
         [HttpPost]
         public IActionResult Post(Fabric fabric)
         {
-           _fabricRepository.Add(fabric);
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userProfile = _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
+
+
+            fabric.UserId = userProfile.Id;
+            _fabricRepository.Add(fabric);
             return CreatedAtAction("Get", new { id = fabric.Id }, fabric);
 
 
 
-        //[HttpGet("{id}")]
-       // public IActionResult Get(int id)
-       // {
-           // var fabric = _fabricRepository.GetById(id);
-            //if (fabric == null)
-           // {
-               // return NotFound();
-           // }
-            //return Ok(fabric);
-       // }
+        }
+        [Authorize]
+        [HttpGet("myFabrics")]
+        public IActionResult MyFabrics()
+        {
+            var currentUserProfile = GetCurrentUserProfile();
+            var fabric = _fabricRepository.GetByUserId(currentUserProfile.Id);
+            if (fabric == null)
+            {
+                return NotFound();
+            }
+            return Ok(fabric);
 
         }
 
-        //[HttpPut("{id}")]
-        //public IActionResult Put(int id, Fabric fabric)
-       // {
-          //  if (id != fabric.Id)
-          //  {
-           //     return BadRequest();
-           // }
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Fabric fabric)
+        {
+          if (id != fabric.Id)
+          {
+             return BadRequest();
+         }
 
-           // _fabricRepository.Update(fabric);
-           // return NoContent();
-       // }
+         _fabricRepository.Update(fabric);
+         return NoContent();
+         }
 
-       // [HttpDelete("{id}")]
-      //  public IActionResult Delete(int id)
-       // {
-       //     _fabricRepository.Delete(id);
-       //     return NoContent();
-       // }
+        [HttpGet("{id}")]
+
+        public IActionResult Get(int id)
+        {
+            var fabric = _fabricRepository.GetFabricById(id);
+            if (fabric == null)
+            {
+                return NotFound();
+            }
+            return Ok(fabric);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult delete(int id)
+        {
+            _fabricRepository.Delete(id);
+            return NoContent();
+        }
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
+        }
     }
 }
-    
 
-       
+
+

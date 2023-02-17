@@ -2,6 +2,14 @@
 GO
 
 
+set identity_insert [UserProfile] on
+INSERT INTO [UserProfile]
+([Id], FirebaseUserId, Email) VALUES (1, 'oDyfQGHL0TdnPbrZtEsAJmpS6or1', 'user1@email.com');
+INSERT INTO [UserProfile]
+([Id], FirebaseUserId, Email) VALUES (2, '2RtcfuG0grZOcxx9dY1UD0shrp73', 'user2@email.com');
+set identity_insert [UserProfile] off
+
+
 set identity_insert [FabricType] on
 INSERT INTO [FabricType]
 ([Id], Type) VALUES (1, 'Woven');
@@ -44,44 +52,38 @@ INSERT INTO [Fabric]
 set identity_insert [Fabric] off
 
 
-set identity_insert [UserProfile] on
-INSERT INTO [UserProfile]
-([Id], FirebaseUserId, Email) VALUES (1, 'oDyfQGHL0TdnPbrZtEsAJmpS6or1', 'user1@email.com');
-INSERT INTO [UserProfile]
-([Id], FirebaseUserId, Email) VALUES (2, '2RtcfuG0grZOcxx9dY1UD0shrp73', 'user2@email.com');
-set identity_insert [UserProfile] off
 
 
 set identity_insert [Pattern] on
 INSERT INTO [Pattern] 
-([Id], [Name], ImageUrl) VALUES (1, 'Red Carpet Dress', 'https://www.patternsforpirates.com/wp-content/uploads/2022/11/Slide2-e1669143627788.jpg');
+([Id],[UserId], [Name], ImageUrl) VALUES (1, 1, 'Red Carpet Dress', 'https://www.patternsforpirates.com/wp-content/uploads/2022/11/Slide2-e1669143627788.jpg');
 INSERT INTO [Pattern] 
-([Id], [Name], ImageUrl) VALUES (2, 'Lumberjack', 'https://www.patternsforpirates.com/wp-content/uploads/2021/11/Slide3-1-e1636064101400-300x300.jpg');
+([Id], [UserId], [Name], ImageUrl) VALUES (2, 1, 'Lumberjack', 'https://www.patternsforpirates.com/wp-content/uploads/2021/11/Slide3-1-e1636064101400-300x300.jpg');
 INSERT INTO [Pattern] 
-([Id], [Name], ImageUrl) VALUES (3, 'Brunch Blouse and Dress', 'https://www.patternsforpirates.com/wp-content/uploads/2017/09/Slide1-1-e1505324797467-300x300.jpg');
+([Id], [UserId],[Name], ImageUrl) VALUES (3, 1, 'Brunch Blouse and Dress', 'https://www.patternsforpirates.com/wp-content/uploads/2017/09/Slide1-1-e1505324797467-300x300.jpg');
 INSERT INTO [Pattern] 
-([Id], [Name], ImageUrl) VALUES (4, 'Cozy Pants', 'https://www.patternsforpirates.com/wp-content/uploads/2020/11/Slide3-1-e1606173098428-300x300.jpg');
+([Id], [UserId], [Name], ImageUrl) VALUES (4, 2,'Cozy Pants', 'https://www.patternsforpirates.com/wp-content/uploads/2020/11/Slide3-1-e1606173098428-300x300.jpg');
 INSERT INTO [Pattern] 
-([Id], [Name], ImageUrl) VALUES (5, 'Vintage Jumper', 'https://www.patternsforpirates.com/wp-content/uploads/2020/10/Slide4-1-e1601586516611-300x300.jpg');
+([Id], [UserId], [Name], ImageUrl) VALUES (5, 2, 'Vintage Jumper', 'https://www.patternsforpirates.com/wp-content/uploads/2020/10/Slide4-1-e1601586516611-300x300.jpg');
 INSERT INTO [Pattern] 
-([Id], [Name], ImageUrl) VALUES (6, 'Sugar Maple Skirt', 'https://www.patternsforpirates.com/wp-content/uploads/2022/04/Sugar-Maple-Adult-Thumbnail-300x300.jpg');
+([Id], [UserId], [Name], ImageUrl) VALUES (6, 2, 'Sugar Maple Skirt', 'https://www.patternsforpirates.com/wp-content/uploads/2022/04/Sugar-Maple-Adult-Thumbnail-300x300.jpg');
 set identity_insert [Pattern] off
 
 
 
 set identity_insert [PatternFabric] on
 INSERT INTO [PatternFabric]
-([Id], PatternId, FabricId) VALUES (1, 1, 6);
+([Id], UserId, PatternId, FabricId) VALUES (1, 1, 1, 6);
 INSERT INTO [PatternFabric]
-([Id],PatternId, FabricId) VALUES (2, 6, 1);
+([Id],UserId,PatternId, FabricId) VALUES (2, 1, 6, 1);
 INSERT INTO [PatternFabric]
-([Id],PatternId, FabricId) VALUES (3, 2, 5);
+([Id],UserId,PatternId, FabricId) VALUES (3, 1, 2, 5);
 INSERT INTO [PatternFabric]
-([Id],PatternId, FabricId) VALUES (4, 5, 9);
+([Id],UserId,PatternId, FabricId) VALUES (4, 2, 5, 9);
 INSERT INTO [PatternFabric]
-([Id],PatternId, FabricId) VALUES (5, 4, 1);
+([Id],UserId,PatternId, FabricId) VALUES (5, 2, 4, 1);
 INSERT INTO [PatternFabric]
-([Id],PatternId, FabricId) VALUES (6, 3, 3);
+([Id],UserId,PatternId, FabricId) VALUES (6, 2, 3, 3);
 set identity_insert [PatternFabric] off
 
 

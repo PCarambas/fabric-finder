@@ -1,7 +1,19 @@
 
 import { Card, CardBody, CardTitle, CardText, CardSubtitle, Button } from 'reactstrap';
+import { useNavigate } from 'react-router-dom';
+import { deleteFabric } from '../modules/fabricManager';
 
-export default function Fabric({ fabric }) {
+
+
+export default function Fabric({ fabric, getAllFabrics }) {
+    const navigate = useNavigate();
+
+    const handleDelete = (evt, fabricId) => {
+        evt.preventDefault();
+        deleteFabric(fabricId).then(getAllFabrics);
+
+    }
+
     return (
         <Card >
             <Card
@@ -10,36 +22,65 @@ export default function Fabric({ fabric }) {
                 style={{ marginBottom: '4px' }}
             >
                 <CardBody>
-                    <CardTitle tag="h5">
-                        Name: {fabric.name}
+                    <CardTitle tag="h3">
+                        Fabric Type
                     </CardTitle>
-                    {<div>
+                    <CardTitle tag="h4">
+                        {fabric.name}
+                    </CardTitle><br></br>
+                    <div>
                         <strong><img src={fabric.imageUrl} /></strong>
-                    </div>}
-                    <CardSubtitle
-                        className="mb-2 text-muted"
-                        tag="h6"
-                    >
+                    </div><br></br>
+                    <CardSubtitle>
                         Color: {fabric.color}
-                    </CardSubtitle>
+                    </CardSubtitle><br></br>
                     <CardText>
                         Yardage: {fabric.yardage}
                     </CardText>
-                    {/* <Button color="dark" onClick={() => {
-                        setDetailsFabricId(fabric.id);
-                        window.scrollTo({
-                            top: 0,
-                            left: 0,
-                            behavior: 'smooth'
-                        });
-                    }}>
-                        Show Details
-                    </Button> */}
+                    <CardText>
+                        Fabric Type: {fabric?.fabricType?.type}
+                    </CardText>
+                    <ul>
+                        {fabric?.patterns?.map(p =>
+                        (
+                            <li key={p.id}>{p.name}</li>
+                        ))}
+                    </ul>
+                    <div>
+                        <Button
+                            color="secondary"
+                            onClick={() => navigate(`/updatefabric/${fabric.id}`)}
+                        >
+                            Edit Fabric
+                        </Button>
+                    </div><br></br>
+                    <div>
+                        {/* stretch goal <Button
+                            color="secondary"
+                            onClick={() => navigate(`/addpattern/`)}
+                        >
+                            Add A Pattern
+                        </Button> */}
+                    </div>
+                    <div>
+                        <Button
+                            color="outline-danger"
+                            onClick={(event) => handleDelete(event, fabric.id)}
+                        >
+                            Delete Fabric
+                        </Button>
+                    </div>
+
                 </CardBody>
             </Card>
         </Card>
     );
 };
+
+
+
+
+
 
 
 
