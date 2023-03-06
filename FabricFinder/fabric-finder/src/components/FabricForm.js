@@ -123,7 +123,7 @@ export default function FabricForm() {
                     onChange={handleUserInput} />
             </FormGroup>
             <FormGroup>
-                <Label for="fabricTypeId">Fabric Type</Label><br></br>
+                <Label for="fabricTypeId">Fabric Type: </Label><br></br>
                 <select
                     required
                     id="fabricTypeId"
@@ -140,11 +140,13 @@ export default function FabricForm() {
                     })}
                 </select>
             </FormGroup>
+            <Label>Choose Your Patterns: </Label><br></br>
             <select
                 multiple
                 onChange={handleUserInputSelect}
                 value={selectedOptions}
             >
+
                 {patterns.map((pattern) => {
                     return (
                         <option key={pattern.id} value={pattern.id}>

@@ -1,7 +1,8 @@
 
-import { Card, CardBody, CardTitle, CardText, CardSubtitle, Button } from 'reactstrap';
+import { Card, CardBody, CardTitle, CardText, CardSubtitle, Button, CardImg } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
 import { deleteFabric } from '../modules/fabricManager';
+import "./Fabric.css"
 
 
 
@@ -29,7 +30,7 @@ export default function Fabric({ fabric, getAllFabrics }) {
                         {fabric.name}
                     </CardTitle><br></br>
                     <div>
-                        <strong><img src={fabric.imageUrl} /></strong>
+                        <strong><img src={fabric.imageUrl} className='fabric-img' /></strong>
                     </div><br></br>
                     <CardSubtitle>
                         Color: {fabric.color}
@@ -40,6 +41,7 @@ export default function Fabric({ fabric, getAllFabrics }) {
                     <CardText>
                         Fabric Type: {fabric?.fabricType?.type}
                     </CardText>
+                    Your Patterns:
                     <ul>
                         {fabric?.patterns?.map(p =>
                         (
@@ -54,14 +56,14 @@ export default function Fabric({ fabric, getAllFabrics }) {
                             Edit Fabric
                         </Button>
                     </div><br></br>
-                    <div>
-                        {/* stretch goal <Button
+                    {/* <div>
+                        <Button
                             color="secondary"
                             onClick={() => navigate(`/addpattern/`)}
                         >
                             Add A Pattern
-                        </Button> */}
-                    </div>
+                        </Button>
+                    </div><br></br> */}
                     <div>
                         <Button
                             color="outline-danger"

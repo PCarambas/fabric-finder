@@ -43,13 +43,13 @@ export default function FabricForm() {
                     type="text"
                     onChange={handleUserInput} />
             </FormGroup>
-            <FormGroup>
+            {/* <FormGroup>
                 <Label for="imageUrl">Image Url</Label>
                 <Input id="imageUrl"
                     name="imageUrl"
                     type="text"
                     onChange={handleUserInput} />
-            </FormGroup>
+            </FormGroup> */}
             <Button onClick={(clickEvent) => handleSavePattern(clickEvent)}>Add New Pattern</Button>
         </Form>
     );
