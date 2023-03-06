@@ -18,7 +18,7 @@ export default function FabricList({ }) {
 
     return (
         <>
-            <h2>Fabric</h2>
+            <br></br><h1>Fabric Finder</h1><br></br>
             {fabrics?.map((fabric) =>
 
                 < Fabric
