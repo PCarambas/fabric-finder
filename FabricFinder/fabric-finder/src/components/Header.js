@@ -18,9 +18,9 @@ export default function Header({ isLoggedIn }) {
     return (
         <div>
             <Navbar color="light" light expand="md">
-                <NavbarBrand tag={RRNavLink} to="/">
+                {/* <NavbarBrand tag={RRNavLink} to="/">
                     Fabric Finder
-                </NavbarBrand>
+                </NavbarBrand> */}
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
